@@ -58,6 +58,10 @@ func NewServiceWithCtx(ctx context.Context) (*Service, error) {
 	}, nil
 }
 
+func (svc *Service) WithService(service *drive.Service) {
+	svc.filer = service.Files
+}
+
 // FilesService returns a pointer to the wrapped FilesService
 func (svc *Service) FilesService() *drive.FilesService {
 	return svc.filer.(*drive.FilesService)

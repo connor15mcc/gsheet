@@ -54,6 +54,11 @@ func NewServiceWithCtx(ctx context.Context) (*Service, error) {
 	}, nil
 }
 
+func (svc *Service) WithService(service *sheets.Service) {
+	svc.sheet = service.Spreadsheets
+	svc.values = service.Spreadsheets.Values
+}
+
 // SpreadsheetsService returns a pointer to the wrapped SpreadsheetsService
 func (svc *Service) SpreadsheetsService() *sheets.SpreadsheetsService {
 	return svc.sheet.(*sheets.SpreadsheetsService)
